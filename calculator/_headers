@@ -1,0 +1,24 @@
+# Cloudflare Pages 헤더 설정 (보안 및 캐싱 최적화)
+
+# 모든 페이지에 적용할 보안 헤더
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+
+# HTML 파일 캐싱 (1시간)
+/*.html
+  Cache-Control: public, max-age=3600
+
+# CSS/JS 파일 캐싱 (1일)
+/css/*
+  Cache-Control: public, max-age=86400, immutable
+  
+/js/*
+  Cache-Control: public, max-age=86400, immutable
+
+# 이미지 파일 캐싱 (7일)
+/images/*
+  Cache-Control: public, max-age=604800, immutable

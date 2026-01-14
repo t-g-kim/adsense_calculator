@@ -1,0 +1,7 @@
+# Cloudflare Pages 리다이렉트 설정
+
+# 404 페이지를 index.html로 리다이렉트 (SPA가 아니므로 주석 처리)
+# /* /index.html 200
+
+# 예시: 구 URL을 새 URL로 리다이렉트
+# /old-page.html /new-page.html 301

@@ -1,0 +1,10 @@
+# Cloudflare Pages 배포 설정
+
+# 빌드 명령어 (정적 사이트이므로 빌드 불필요)
+# Build command: (leave empty)
+
+# 빌드 출력 디렉토리
+# Build output directory: /
+
+# 환경 변수 (필요시 설정)
+# Environment variables: (none required)
