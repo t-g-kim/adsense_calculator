@@ -1,0 +1,10 @@
+# Redirects for Cloudflare Pages
+
+# Redirect old URLs (예시)
+# /old-bmi-calculator /bmi-calculator.html 301
+
+# Redirect non-www to www (선택사항, 도메인 설정 시)
+# https://example.com/* https://www.example.com/:splat 301
+
+# SPA Fallback (필요 시)
+# /* /index.html 200

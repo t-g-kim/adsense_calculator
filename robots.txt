@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or private pages (필요시)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://your-domain.pages.dev/sitemap.xml
