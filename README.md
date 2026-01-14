@@ -34,7 +34,7 @@ webapp/
 ### 1. GitHub 저장소 생성
 
 1. GitHub에 로그인
-2. 새 저장소 생성: `calculator-hub` (또는 원하는 이름)
+2. 새 저장소 생성: `calculator` (또는 원하는 이름)
 3. 저장소를 Public 또는 Private으로 설정
 
 ### 2. 로컬 Git 설정 및 푸시
@@ -70,13 +70,13 @@ git push -u origin main
 
 3. **GitHub 연동**
    - GitHub 계정 연결
-   - 저장소 선택: `calculator-hub`
+   - 저장소 선택: `calculator`
    - "Begin setup" 클릭
 
 4. **빌드 설정**
    ```
-   Project name: calculator-hub (또는 원하는 이름)
-   Production branch: main
+   Project name: calculator
+   Production branch: main (또는 master)
    Build command: (비워둠 - 정적 사이트)
    Build output directory: / (루트 디렉토리)
    ```

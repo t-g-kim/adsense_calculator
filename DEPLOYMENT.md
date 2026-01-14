@@ -19,7 +19,7 @@
 ### 2단계: GitHub 저장소 연결
 
 1. GitHub 계정 인증 (처음 사용시)
-2. 저장소 선택: **`t-g-kim/pj1`**
+2. 저장소 선택: **`t-g-kim/pj1`** (calculator)
 3. **"Begin setup"** 클릭
 
 ### 3단계: 빌드 설정
@@ -27,8 +27,7 @@
 다음과 같이 입력하세요:
 
 ```
-Project name: bmi-calculator-hub
-(또는 원하는 이름으로 설정 가능)
+Project name: calculator
 
 Production branch: master
 
@@ -48,7 +47,7 @@ Build output directory: /
 2. 약 1-2분 후 배포 완료
 3. 배포 완료 후 제공되는 URL 확인:
    ```
-   https://bmi-calculator-hub.pages.dev
+   https://calculator.pages.dev
    ```
 
 ## 🔧 배포 후 설정
