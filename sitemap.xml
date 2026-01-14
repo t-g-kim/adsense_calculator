@@ -20,14 +20,60 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- Future Calculators - Add as they are created -->
-    <!--
+    <!-- Loan Calculator -->
     <url>
         <loc>https://your-domain.pages.dev/loan-calculator.html</loc>
         <lastmod>2024-01-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    -->
+
+    <!-- Exchange Calculator -->
+    <url>
+        <loc>https://your-domain.pages.dev/exchange-calculator.html</loc>
+        <lastmod>2024-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Date Calculator -->
+    <url>
+        <loc>https://your-domain.pages.dev/date-calculator.html</loc>
+        <lastmod>2024-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Percentage Calculator -->
+    <url>
+        <loc>https://your-domain.pages.dev/percentage-calculator.html</loc>
+        <lastmod>2024-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Calorie Calculator -->
+    <url>
+        <loc>https://your-domain.pages.dev/calorie-calculator.html</loc>
+        <lastmod>2024-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Electricity Calculator -->
+    <url>
+        <loc>https://your-domain.pages.dev/electricity-calculator.html</loc>
+        <lastmod>2024-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Investment Calculator -->
+    <url>
+        <loc>https://your-domain.pages.dev/investment-calculator.html</loc>
+        <lastmod>2024-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
 
 </urlset>
