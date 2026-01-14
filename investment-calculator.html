@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="무료 투자수익 계산기 - 예금, 적금, 투자 상품의 예상 수익률을 계산하세요.">
+    <title>투자수익 계산기 | Calculator Hub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1><a href="/">🧮 Calculator Hub</a></h1>
+                <nav><a href="/" class="nav-link">홈</a></nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="calculator-page">
+            <div class="calculator-header">
+                <h2>📈 투자수익 계산기</h2>
+                <p>예금, 적금, 투자 상품의 예상 수익을 계산하세요</p>
+            </div>
+
+            <div class="calculator-layout">
+                <div class="calculator-main">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label>상품 유형</label>
+                            <select id="productType">
+                                <option value="deposit">예금 (일시불)</option>
+                                <option value="savings">적금 (월납)</option>
+                            </select>
+                        </div>
+
+                        <div id="depositFields">
+                            <div class="form-group">
+                                <label>예치 금액 (원)</label>
+                                <input type="number" id="depositAmount" placeholder="10000000" step="100000">
+                            </div>
+                        </div>
+
+                        <div id="savingsFields" style="display: none;">
+                            <div class="form-group">
+                                <label>월 납입액 (원)</label>
+                                <input type="number" id="monthlyAmount" placeholder="100000" step="10000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>연 이자율 (%)</label>
+                            <input type="number" id="interestRate" placeholder="4.5" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>기간 (개월)</label>
+                            <input type="number" id="period" placeholder="12" min="1" max="120">
+                        </div>
+
+                        <button id="calculateBtn" class="btn-primary btn-large">수익 계산하기</button>
+                        <div id="result" class="result-box" style="display: none;"></div>
+                    </div>
+                </div>
+                <aside class="calculator-sidebar">
+                    <div class="ad-container ad-vertical">
+                        <div class="ad-placeholder"><p>광고</p></div>
+                    </div>
+                </aside>
+            </div>
+
+            <section class="info-section">
+                <h3>📌 이자 계산 방식</h3>
+                <ul class="info-list">
+                    <li><strong>예금:</strong> 단리 또는 복리 계산</li>
+                    <li><strong>적금:</strong> 월복리 계산 방식</li>
+                    <li><strong>세금:</strong> 이자소득세 15.4% 별도</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <script>
+    const productTypeSelect = document.getElementById('productType');
+    const depositFields = document.getElementById('depositFields');
+    const savingsFields = document.getElementById('savingsFields');
+
+    productTypeSelect.addEventListener('change', function() {
+        if (this.value === 'deposit') {
+            depositFields.style.display = 'block';
+            savingsFields.style.display = 'none';
+        } else {
+            depositFields.style.display = 'none';
+            savingsFields.style.display = 'block';
+        }
+    });
+
+    document.getElementById('calculateBtn').addEventListener('click', function() {
+        const type = productTypeSelect.value;
+        const rate = parseFloat(document.getElementById('interestRate').value) / 100;
+        const months = parseInt(document.getElementById('period').value);
+
+        if (!rate || !months) {
+            alert('모든 값을 입력해주세요.');
+            return;
+        }
+
+        let principal, interest, total, tax, netTotal;
+
+        if (type === 'deposit') {
+            // 예금 계산
+            principal = parseFloat(document.getElementById('depositAmount').value);
+            if (!principal) {
+                alert('예치 금액을 입력해주세요.');
+                return;
+            }
+
+            // 단리 계산
+            interest = principal * rate * (months / 12);
+            total = principal + interest;
+            tax = interest * 0.154; // 이자소득세 15.4%
+            netTotal = total - tax;
+
+            document.getElementById('result').innerHTML = `
+                <h4>💰 예금 수익 계산</h4>
+                <p><strong>원금:</strong> ${principal.toLocaleString()}원</p>
+                <p><strong>세전 이자:</strong> ${Math.round(interest).toLocaleString()}원</p>
+                <p><strong>이자소득세 (15.4%):</strong> ${Math.round(tax).toLocaleString()}원</p>
+                <p><strong>세후 이자:</strong> ${Math.round(interest - tax).toLocaleString()}원</p>
+                <p class="big-number" style="font-size: 1.75rem; margin-top: 1rem;">
+                    <strong>만기 수령액:</strong> ${Math.round(netTotal).toLocaleString()}원
+                </p>
+                <p style="font-size: 0.875rem; color: #64748b; margin-top: 1rem;">
+                ※ 단리 기준 계산이며, 실제 이자는 상품마다 다를 수 있습니다.
+                </p>
+            `;
+        } else {
+            // 적금 계산
+            const monthly = parseFloat(document.getElementById('monthlyAmount').value);
+            if (!monthly) {
+                alert('월 납입액을 입력해주세요.');
+                return;
+            }
+
+            // 적금 이자 계산 (단순화)
+            principal = monthly * months;
+            interest = monthly * months * (months + 1) / 2 * (rate / 12);
+            total = principal + interest;
+            tax = interest * 0.154;
+            netTotal = total - tax;
+
+            document.getElementById('result').innerHTML = `
+                <h4>💰 적금 수익 계산</h4>
+                <p><strong>납입 원금:</strong> ${principal.toLocaleString()}원</p>
+                <p><strong>세전 이자:</strong> ${Math.round(interest).toLocaleString()}원</p>
+                <p><strong>이자소득세 (15.4%):</strong> ${Math.round(tax).toLocaleString()}원</p>
+                <p><strong>세후 이자:</strong> ${Math.round(interest - tax).toLocaleString()}원</p>
+                <p class="big-number" style="font-size: 1.75rem; margin-top: 1rem;">
+                    <strong>만기 수령액:</strong> ${Math.round(netTotal).toLocaleString()}원
+                </p>
+                <p style="font-size: 0.875rem; color: #64748b; margin-top: 1rem;">
+                ※ 월복리 기준 계산이며, 실제 이자는 상품마다 다를 수 있습니다.
+                </p>
+            `;
+        }
+
+        document.getElementById('result').style.display = 'block';
+    });
+    </script>
+</body>
+</html>

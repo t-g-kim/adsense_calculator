@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="무료 날짜 계산기 - 디데이 계산, 날짜 차이 계산, 날짜 더하기/빼기 기능을 제공합니다.">
+    <meta name="keywords" content="날짜 계산기, 디데이 계산, 날짜 차이, 날짜 더하기">
+    
+    <title>날짜 계산기 - 무료 날짜 계산 도구 | Calculator Hub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1><a href="/">🧮 Calculator Hub</a></h1>
+                <nav>
+                    <a href="/" class="nav-link">홈</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="calculator-page">
+            <div class="calculator-header">
+                <h2>📅 날짜 계산기</h2>
+                <p>날짜 차이, 디데이, 날짜 더하기/빼기를 계산하세요</p>
+            </div>
+
+            <div class="calculator-layout">
+                <div class="calculator-main">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label>계산 유형</label>
+                            <select id="calcType">
+                                <option value="diff">날짜 차이 계산</option>
+                                <option value="add">날짜 더하기/빼기</option>
+                            </select>
+                        </div>
+
+                        <div id="diffMode">
+                            <div class="form-group">
+                                <label for="startDate">시작 날짜</label>
+                                <input type="date" id="startDate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="endDate">종료 날짜</label>
+                                <input type="date" id="endDate">
+                            </div>
+                        </div>
+
+                        <div id="addMode" style="display: none;">
+                            <div class="form-group">
+                                <label for="baseDate">기준 날짜</label>
+                                <input type="date" id="baseDate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="addValue">더하기/빼기</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="number" id="addValue" placeholder="숫자 입력" style="flex: 1;">
+                                    <select id="addUnit" style="flex: 0 0 120px;">
+                                        <option value="days">일</option>
+                                        <option value="weeks">주</option>
+                                        <option value="months">개월</option>
+                                        <option value="years">년</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="calculateBtn" class="btn-primary btn-large">계산하기</button>
+                        <button id="resetBtn" class="btn-secondary btn-large">초기화</button>
+                    </div>
+
+                    <div id="result" class="result-container" style="display: none;">
+                        <h3>계산 결과</h3>
+                        <div id="resultContent"></div>
+                    </div>
+                </div>
+
+                <aside class="calculator-sidebar">
+                    <div class="ad-container ad-vertical">
+                        <div class="ad-placeholder">
+                            <p>광고 영역<br>(사이드바)</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <section class="info-section">
+                <h3>📖 날짜 계산기 사용 가이드</h3>
+                <p>날짜 계산기로 디데이, 경과 일수, 특정 날짜 이후의 날짜 등을 계산할 수 있습니다.</p>
+                
+                <h4>💡 이용 예시</h4>
+                <ul class="info-list">
+                    <li><strong>생일까지:</strong> 다음 생일까지 D-Day 계산</li>
+                    <li><strong>기념일:</strong> 100일, 200일 기념일 계산</li>
+                    <li><strong>휴가:</strong> 휴가 시작일로부터 며칠 후</li>
+                    <li><strong>근무일:</strong> 입사일부터 오늘까지 경과 일수</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <script src="/js/date-calculator.js"></script>
+</body>
+</html>

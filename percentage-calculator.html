@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="무료 퍼센트 계산기 - 백분율, 증감률, 비율 계산을 쉽고 빠르게 수행합니다.">
+    <meta name="keywords" content="퍼센트 계산기, 백분율, 할인율 계산, 증감률">
+    
+    <title>퍼센트 계산기 - 무료 백분율 계산 도구 | Calculator Hub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1><a href="/">🧮 Calculator Hub</a></h1>
+                <nav><a href="/" class="nav-link">홈</a></nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="calculator-page">
+            <div class="calculator-header">
+                <h2>🔢 퍼센트 계산기</h2>
+                <p>백분율, 증감률, 비율을 빠르게 계산하세요</p>
+            </div>
+
+            <div class="calculator-layout">
+                <div class="calculator-main">
+                    <div class="calculator-form">
+                        <h3>💰 할인 계산</h3>
+                        <div class="form-group">
+                            <label>원가</label>
+                            <input type="number" id="originalPrice" placeholder="10000">
+                        </div>
+                        <div class="form-group">
+                            <label>할인율 (%)</label>
+                            <input type="number" id="discountRate" placeholder="20">
+                        </div>
+                        <button id="calcDiscount" class="btn-primary btn-large">계산</button>
+                        <div id="discountResult" class="result-box" style="display: none;"></div>
+
+                        <hr style="margin: 2rem 0;">
+
+                        <h3>📊 비율 계산</h3>
+                        <div class="form-group">
+                            <label>A는 B의 몇 %인가?</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="number" id="valueA" placeholder="A">
+                                <input type="number" id="valueB" placeholder="B">
+                            </div>
+                        </div>
+                        <button id="calcPercent" class="btn-primary btn-large">계산</button>
+                        <div id="percentResult" class="result-box" style="display: none;"></div>
+
+                        <hr style="margin: 2rem 0;">
+
+                        <h3>📈 증감률 계산</h3>
+                        <div class="form-group">
+                            <label>이전 값</label>
+                            <input type="number" id="beforeValue" placeholder="100">
+                        </div>
+                        <div class="form-group">
+                            <label>현재 값</label>
+                            <input type="number" id="afterValue" placeholder="120">
+                        </div>
+                        <button id="calcChange" class="btn-primary btn-large">계산</button>
+                        <div id="changeResult" class="result-box" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <aside class="calculator-sidebar">
+                    <div class="ad-container ad-vertical">
+                        <div class="ad-placeholder"><p>광고 영역</p></div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/percentage-calculator.js"></script>
+</body>
+</html>

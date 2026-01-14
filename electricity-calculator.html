@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="무료 전기요금 계산기 - 월 사용 전력량으로 예상 전기요금을 계산하세요.">
+    <title>전기요금 계산기 | Calculator Hub</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1><a href="/">🧮 Calculator Hub</a></h1>
+                <nav><a href="/" class="nav-link">홈</a></nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="calculator-page">
+            <div class="calculator-header">
+                <h2>⚡ 전기요금 계산기</h2>
+                <p>월 사용 전력량으로 예상 전기요금을 확인하세요</p>
+            </div>
+
+            <div class="calculator-layout">
+                <div class="calculator-main">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label>가구 유형</label>
+                            <select id="houseType">
+                                <option value="house">주택용 (일반 가정)</option>
+                                <option value="apartment">아파트</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>월 사용량 (kWh)</label>
+                            <input type="number" id="usage" placeholder="예: 300" min="0">
+                            <small>월 전기 사용량을 입력하세요</small>
+                        </div>
+                        <button id="calculateBtn" class="btn-primary btn-large">요금 계산하기</button>
+                        <div id="result" class="result-box" style="display: none;"></div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>📊 구간별 단가 (주택용, 2024년 기준)</h3>
+                        <div class="rate-list">
+                            <div class="rate-item">
+                                <span>0~200 kWh</span>
+                                <span>112원/kWh</span>
+                            </div>
+                            <div class="rate-item">
+                                <span>201~400 kWh</span>
+                                <span>206.6원/kWh</span>
+                            </div>
+                            <div class="rate-item">
+                                <span>400 kWh 초과</span>
+                                <span>299.3원/kWh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="calculator-sidebar">
+                    <div class="ad-container ad-vertical">
+                        <div class="ad-placeholder"><p>광고</p></div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    document.getElementById('calculateBtn').addEventListener('click', function() {
+        const usage = parseFloat(document.getElementById('usage').value);
+        
+        if (!usage || usage < 0) {
+            alert('사용량을 입력해주세요.');
+            return;
+        }
+
+        let cost = 0;
+        let breakdown = '';
+
+        // 주택용 누진 요금제 (간단 버전)
+        if (usage <= 200) {
+            cost = usage * 112;
+            breakdown = `${usage} kWh × 112원 = ${cost.toLocaleString()}원`;
+        } else if (usage <= 400) {
+            const tier1 = 200 * 112;
+            const tier2 = (usage - 200) * 206.6;
+            cost = tier1 + tier2;
+            breakdown = `
+                <p>1구간: 200 kWh × 112원 = ${tier1.toLocaleString()}원</p>
+                <p>2구간: ${(usage - 200).toFixed(0)} kWh × 206.6원 = ${tier2.toLocaleString()}원</p>
+            `;
+        } else {
+            const tier1 = 200 * 112;
+            const tier2 = 200 * 206.6;
+            const tier3 = (usage - 400) * 299.3;
+            cost = tier1 + tier2 + tier3;
+            breakdown = `
+                <p>1구간: 200 kWh × 112원 = ${tier1.toLocaleString()}원</p>
+                <p>2구간: 200 kWh × 206.6원 = ${tier2.toLocaleString()}원</p>
+                <p>3구간: ${(usage - 400).toFixed(0)} kWh × 299.3원 = ${tier3.toLocaleString()}원</p>
+            `;
+        }
+
+        // 기본요금 및 부가세 추가
+        const basicCharge = usage <= 200 ? 910 : usage <= 400 ? 1600 : 7300;
+        const subtotal = cost + basicCharge;
+        const vat = Math.round(subtotal * 0.1);
+        const fundCharge = Math.round(subtotal * 0.037); // 전력산업기반기금
+        const total = subtotal + vat + fundCharge;
+
+        document.getElementById('result').innerHTML = `
+            <h4>💡 예상 전기요금</h4>
+            <p class="big-number" style="font-size: 2rem;">${Math.round(total).toLocaleString()}원</p>
+            <hr style="margin: 1rem 0;">
+            <h5>상세 내역</h5>
+            ${breakdown}
+            <p><strong>기본요금:</strong> ${basicCharge.toLocaleString()}원</p>
+            <p><strong>전력량 요금:</strong> ${Math.round(cost).toLocaleString()}원</p>
+            <p><strong>부가세 (10%):</strong> ${vat.toLocaleString()}원</p>
+            <p><strong>전력기금 (3.7%):</strong> ${fundCharge.toLocaleString()}원</p>
+            <p style="font-size: 0.875rem; color: #64748b; margin-top: 1rem;">
+            ※ 실제 요금은 계절별, 시간대별 차등 요금이 적용될 수 있습니다.
+            </p>
+        `;
+        document.getElementById('result').style.display = 'block';
+    });
+    </script>
+</body>
+</html>
